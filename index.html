@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Digitális megoldások a fenntartható életért</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@600;800&display=swap">
+<style>
+:root{--bg:#fff;--alt:#eef6ee;--ink:#17261c;--muted:#51655a;--g:#2e7d32;--line:#bcd4be;--on:#fff;--gd:#1b4d2b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1a12;--alt:#14241a;--ink:#e8f1ea;--muted:#a3b8aa;--g:#6fcf7a;--line:#2b4632;--on:#0e1a12}}
+:root[data-theme="dark"]{--bg:#0e1a12;--alt:#14241a;--ink:#e8f1ea;--muted:#a3b8aa;--g:#6fcf7a;--line:#2b4632;--on:#0e1a12}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);background:var(--gd)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 clamp(1rem,.96rem + .2vw,1.1rem)/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:Bitter,Georgia,serif;line-height:1.2;margin:0 0 .6em}
+h2{font-size:clamp(1.6rem,1.2rem + 1.8vw,2.3rem);font-weight:800}
+h3{font-size:1.15rem;font-weight:600}
+p{margin:0 0 1em;max-width:60ch}
+.wrap{width:min(100% - 2.5rem,960px);margin-inline:auto}
+section{padding:clamp(3rem,7vw,5.5rem) 0}
+.alt{background:var(--alt)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #e0a800;outline-offset:3px}
+
+.hero,.end{background:var(--gd);color:#fff}
+.hero{padding:clamp(3rem,10vw,6.5rem) 0 clamp(2.5rem,7vw,4.5rem)}
+.hero h1{font-size:clamp(2rem,1.3rem + 3.6vw,3.8rem);font-weight:800;max-width:16ch;margin-bottom:.4em}
+.rule{border:0;border-top:2px solid #fff;width:min(100%,440px);margin:0 0 1.2rem}
+.sub{font-family:Bitter,Georgia,serif;font-size:clamp(1.15rem,1rem + .8vw,1.5rem);color:#c4e8cc;margin-bottom:1.6rem}
+.lead{max-width:44ch}
+.hero a{color:#fff;font-weight:600;text-underline-offset:4px}
+
+.q{padding:1.3rem 0 1.4rem;border-top:2px solid var(--line)}
+.opts{display:flex;flex-wrap:wrap;gap:.6rem}
+.opt{font:inherit;color:var(--ink);background:transparent;border:2px solid var(--g);border-radius:4px;padding:.55rem .95rem;cursor:pointer;text-align:left}
+.opt:hover{background:var(--alt)}
+.opt.on{background:var(--g);color:var(--on)}
+.fb{margin:.8rem 0 0;min-height:1.6em;color:var(--g);font-weight:600}
+.opt{min-height:44px}
+@media (max-width:600px){.opts{flex-direction:column}.opt{width:100%;font-size:1.02rem}.row{grid-template-columns:1fr;gap:.3rem;margin-bottom:.9rem}.pick{padding:.9rem 0}.pick input{width:26px;height:26px}.hero h1{max-width:none}}
+@media (min-width:601px){.opt{min-height:0}}
+
+.cmp{max-width:680px;margin-top:2rem}
+.cmp h3{margin:1.6rem 0 .7rem}
+.row{display:grid;grid-template-columns:minmax(110px,180px) 1fr;gap:.8rem;align-items:center;margin-bottom:.5rem;font-size:.95rem}
+.track{height:30px;background:var(--bg);border:1px solid var(--line)}
+.fill{height:100%;width:0;background:#8b9a90;color:#fff;font-weight:700;font-size:.9rem;display:flex;align-items:center;justify-content:flex-end;padding-right:.6rem;transition:width 1s ease-out}
+.fill.g{background:var(--g);color:var(--on)}
+.in .fill{width:var(--w)}
+.note{font-size:.88rem;color:var(--muted);margin-top:1.2rem}
+.ask{font-family:Bitter,Georgia,serif;font-weight:600;font-size:1.2rem;margin-top:2.2rem;padding-left:1rem;border-left:4px solid var(--g)}
+
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.6rem;margin-top:1.8rem}
+.cols div{border-top:4px solid var(--g);padding-top:.8rem}
+.cols p{color:var(--muted);margin:0}
+
+.pick{display:flex;gap:.8rem;align-items:center;padding:.65rem 0;border-bottom:1px solid var(--line);cursor:pointer;max-width:620px}
+.pick input{flex:none;width:22px;height:22px;margin:0;accent-color:var(--g);cursor:pointer}
+#cnt{margin:1.2rem 0 0;font-weight:700;color:var(--g)}
+
+.end blockquote{margin:0 0 1rem;font-family:Bitter,Georgia,serif;font-weight:800;font-size:clamp(1.5rem,1.1rem + 2.2vw,2.6rem);line-height:1.25;max-width:22ch}
+.end p{color:#d3efda;margin:0}
+footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Digitális megoldások a fenntartható életért</h1>
+    <hr class="rule">
+    <p class="sub">„Lapozz a zöldebb jövő felé”</p>
+    <p class="lead">Hány lapot nyomtattál ki a múlt héten? És hányat használtál tényleg?</p>
+    <a href="#kerdesek">Görgess lejjebb</a>
+  </div>
+</header>
+
+<section id="kerdesek">
+  <div class="wrap">
+    <h2>Mielőtt továbbmész: három kérdés</h2>
+    <p>Nincs rá pontszám. Válaszolj, és megmutatjuk, mit gondolunk mi.</p>
+
+    <div class="q">
+      <h3>Mikor nyomtattál ki utoljára valamit, amit alig használtál?</h3>
+      <div class="opts">
+        <button class="opt" data-r="Ez gyakori. Pont ezt szeretnénk csökkenteni.">Ma vagy tegnap</button>
+        <button class="opt" data-r="Egy-egy lap kevésnek tűnik, de összeadódik.">Pár napja</button>
+        <button class="opt" data-r="Pont ezért nem tűnik fel, mennyi megy el.">Nem emlékszem</button>
+      </div>
+      <p class="fb" aria-live="polite"></p>
+    </div>
+
+    <div class="q">
+      <h3>Szerinted mennyivel csökkenne a papírfogyasztás, ha a dolgozatok nagy része online lenne?</h3>
+      <div class="opts">
+        <button class="opt" data-r="A mi számításunk szerint sokkal többel. Lejjebb látod.">Alig</button>
+        <button class="opt" data-r="Ennél többet mutat a számolásunk.">Pár százalékkal</button>
+        <button class="opt" data-r="Közel vagy: nálunk körülbelül 38% jött ki.">Nagyjából egyharmaddal vagy többel</button>
+      </div>
+      <p class="fb" aria-live="polite"></p>
+    </div>
+
+    <div class="q">
+      <h3>Online dolgozatot írnál szívesebben?</h3>
+      <div class="opts">
+        <button class="opt" data-r="A QR-kódos belépés ebben segítene.">Igen</button>
+        <button class="opt" data-r="Lejjebb megnézheted, hogyan működne.">Attól függ</button>
+        <button class="opt" data-r="Rendben. Nem az a cél, hogy minden papír eltűnjön, hanem hogy ne nyomtassunk feleslegesen.">Papíron jobb</button>
+      </div>
+      <p class="fb" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="szamok">
+  <div class="wrap">
+    <h2>Mit mutatnak a számaink?</h2>
+    <p>A prezentációban két grafikont készítettünk: az egyik a papír költségét, a másik a papírfogyasztást és a fakivágást mutatja. Mindkettőn az látszik, hogy az első év végére az online dolgozatokkal körülbelül 38%-kal kevesebb papír kell.</p>
+    <div class="cmp" id="cmp">
+      <h3>Papírköltség az első év végén</h3>
+      <div class="row"><span>Online dolgozatok előtt</span><div class="track"><div class="fill" style="--w:100%">100%</div></div></div>
+      <div class="row"><span>Online dolgozatok után</span><div class="track"><div class="fill g" style="--w:62%">62%</div></div></div>
+      <h3>Papírfogyasztás az első év végén</h3>
+      <div class="row"><span>Csak papíron</span><div class="track"><div class="fill" style="--w:100%">100%</div></div></div>
+      <div class="row"><span>60% online dolgozattal</span><div class="track"><div class="fill g" style="--w:62%">62%</div></div></div>
+      <p class="note">Százalékos összehasonlítás a prezentációnk grafikonjai alapján.</p>
+    </div>
+    <p class="ask">Mire költenéd el a megspórolt pénzt az iskolában?</p>
+  </div>
+</section>
+
+<section id="megoldasok">
+  <div class="wrap">
+    <h2>Mit használjunk papír helyett?</h2>
+    <div class="cols">
+      <div><h3>QR-kódos dolgozat belépők</h3><p>Egy beolvasással bent vagy a dolgozatban, így könnyebb az írás, és nem kell kinyomtatni semmit.</p></div>
+      <div><h3>Ebédjegyek digitalizálása</h3><p>Nincs több elveszett vagy összegyűrt cédula, minden egy helyen van.</p></div>
+      <div><h3>E-könyvek és digitális kötelező olvasmányok</h3><p>Az egész olvasmánylista elfér egy eszközön, és nem kell mindenkinek külön kinyomtatnia.</p></div>
+    </div>
+    <p class="ask">Melyik változást vennéd észre először a saját napodban?</p>
+  </div>
+</section>
+
+<section class="alt" id="lepesek">
+  <div class="wrap">
+    <h2>Hogyan jutunk közelebb a zöld jövőhöz?</h2>
+    <p>Pipáld ki, amit te is meg tudnál csinálni.</p>
+    <div id="picks">
+      <label class="pick"><input type="checkbox">Papírfelhasználás csökkentése</label>
+      <label class="pick"><input type="checkbox">Papír újrahasznosítás</label>
+      <label class="pick"><input type="checkbox">Kétoldalas nyomtatás</label>
+      <label class="pick"><input type="checkbox">Szelektíven gyűjtjük a papír hulladékot</label>
+      <label class="pick"><input type="checkbox">Digitális dolgozatok</label>
+      <label class="pick"><input type="checkbox">Papírgyűjtő dobozok kihelyezése</label>
+      <label class="pick"><input type="checkbox">Szóbeli feleltetés</label>
+    </div>
+    <p id="cnt" aria-live="polite">0 / 7 kipipálva</p>
+  </div>
+</section>
+
+<section class="end">
+  <div class="wrap">
+    <blockquote>„A zöldebb jövő az apró döntéseinkkel kezdődik”</blockquote>
+    <p>Köszönjük, hogy végigolvastad.</p>
+  </div>
+</section>
+<footer><div class="wrap">Projekthét · Készítette: a 9.c osztály tanulói</div></footer>
+
+<script>
+(function(){
+  var cmp=document.getElementById('cmp');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e,o){if(e[0].isIntersecting){cmp.classList.add('in');o.disconnect()}},{threshold:.3}).observe(cmp);
+  }else{cmp.classList.add('in')}
+
+  document.querySelectorAll('.q').forEach(function(q){
+    var fb=q.querySelector('.fb'),opts=q.querySelectorAll('.opt');
+    opts.forEach(function(b){b.addEventListener('click',function(){
+      opts.forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on');fb.textContent=b.getAttribute('data-r');
+    })});
+  });
+
+  var boxes=document.querySelectorAll('#picks input'),cnt=document.getElementById('cnt');
+  boxes.forEach(function(b){b.addEventListener('change',function(){
+    var n=0;boxes.forEach(function(x){if(x.checked)n++});
+    cnt.textContent=n+' / '+boxes.length+' kipipálva'+(n===boxes.length?' – mind a hét!':'');
+  })});
+})();
+</script>
+</body>
+</html>
