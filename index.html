@@ -60,6 +60,29 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #e0a8
 .end blockquote{margin:0 0 1rem;font-family:Bitter,Georgia,serif;font-weight:800;font-size:clamp(1.5rem,1.1rem + 2.2vw,2.6rem);line-height:1.25;max-width:22ch}
 .end p{color:#d3efda;margin:0}
 footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.js .rv.on{opacity:1;transform:none}
+h2{font-size:clamp(1.9rem,1.2rem + 3vw,3.2rem);line-height:1.1}
+.top{position:relative;overflow:hidden;color:#fff;background:#0d3a20;min-height:min(90vh,780px);display:flex;align-items:flex-end}
+.top .bg{position:absolute;inset:0;isolation:isolate;background:#0d3a20}
+.top .bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.1);mix-blend-mode:screen;opacity:.85}
+.top .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,48,27,.94) 8%,rgba(11,48,27,.25) 75%)}
+.top .wrap{position:relative;z-index:1;padding:7rem 0 clamp(2.5rem,7vw,4.5rem)}
+.top h1{font-size:clamp(2.3rem,1.2rem + 5vw,5rem);font-weight:800;max-width:15ch;margin-bottom:.35em;line-height:1.05}
+.top a{color:#fff;font-weight:600;text-underline-offset:4px}
+.split{display:grid;gap:clamp(1.5rem,4vw,3.5rem);align-items:center}
+.ph{margin:0;border-radius:10px;overflow:hidden;isolation:isolate}
+.ph img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+.duo{background:#0d3a20}.duo img{filter:grayscale(1) contrast(1.1);mix-blend-mode:screen}
+.tall img{aspect-ratio:4/5}
+@media(min-width:860px){.split{grid-template-columns:1.05fr .95fr}.split.rev>.ph{order:-1}.split.st{align-items:start}.stick{position:sticky;top:2rem}.sol img{aspect-ratio:4/3}}
+@media(max-width:859px){.split .ph{order:-1}}
+.big{font-family:Bitter,Georgia,serif;font-weight:800;font-size:clamp(4.5rem,2.5rem + 9vw,9rem);line-height:.95;color:var(--g);margin:1.5rem 0 0}
+.bigc{font-size:1.1rem;margin:.3rem 0 1.2rem}
+.sol h3{font-size:clamp(1.3rem,1.1rem + 1vw,1.8rem)}
+.sol+.sol,.sol-wrap .split{margin-top:clamp(2.5rem,6vw,4.5rem)}
+#picks{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0 2.5rem;margin-top:1.5rem}
+#picks .pick{max-width:none}
 #bt-open{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:30;background:var(--g);color:var(--on);border:2px solid var(--bg);border-radius:4px;padding:.75rem 1.1rem;font:inherit;font-weight:700;cursor:pointer;min-height:44px}
 #bt-box{display:none;position:fixed;right:1rem;bottom:calc(4.6rem + env(safe-area-inset-bottom,0px));z-index:30;width:min(380px,calc(100vw - 2rem));max-height:min(72vh,560px);flex-direction:column;background:var(--bg);color:var(--ink);border:2px solid var(--g);border-radius:6px;overflow:hidden}
 #bt-box.open{display:flex}
@@ -75,27 +98,54 @@ footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
 #bt-f input{flex:1;min-width:0;font:inherit;padding:.55rem;border:2px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
 #bt-f button{font:inherit;font-weight:700;background:var(--g);color:var(--on);border:0;border-radius:4px;padding:0 .9rem;cursor:pointer}
 @media (max-width:600px){#bt-box{left:.5rem;right:.5rem;width:auto;max-height:75vh}#bt-open{right:.5rem}}
+:root{--b:#1769d6;--bl:#e9f2fd;--onb:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--b:#6db3ff;--bl:#0f2236;--onb:#06182e}}
+:root[data-theme="dark"]{--b:#6db3ff;--bl:#0f2236;--onb:#06182e}
+html{background:linear-gradient(var(--gd) 50%,#0f4c81 50%);-webkit-tap-highlight-color:transparent}
+button,label,a{touch-action:manipulation}
+.alt2{background:var(--bl)}
+.duo{background:none}.duo img{filter:none;mix-blend-mode:normal}
+.top{min-height:min(88svh,780px)}
+.top .bg img{filter:none;mix-blend-mode:normal;opacity:1}
+.top .bg::after{background:linear-gradient(0deg,rgba(8,32,56,.8),rgba(8,32,56,0) 55%),linear-gradient(110deg,rgba(14,74,42,.94) 25%,rgba(15,76,129,.55) 100%)}
+.top a.go{display:inline-block;margin-top:.4rem;background:#fff;color:#0b3466;padding:.9rem 1.7rem;border-radius:6px;font-weight:700;text-decoration:none}
+.opt{border-color:var(--b)}.opt.on{background:var(--b);border-color:var(--b);color:var(--onb)}
+.fb,#cnt{color:var(--b)}
+.fill.g{background:var(--b);color:var(--onb)}
+.big{color:var(--b)}
+.ask{border-left-color:var(--b)}
+.pick input{accent-color:var(--b)}
+.mt{height:14px;background:var(--bg);border:1px solid var(--line);border-radius:7px;overflow:hidden;max-width:620px;margin-top:1.2rem}
+.mf{height:100%;width:0;background:linear-gradient(90deg,var(--g),var(--b));transition:width .5s ease}
+.end{background:linear-gradient(150deg,#14532d,#0f4c81)}
+footer{background:#0f4c81;color:#c9def5;padding-bottom:5rem}
+#bt-open,#bt-f button{background:var(--b);color:var(--onb)}
+.m.u{background:var(--b);color:var(--onb)}
+.chips button{border-color:var(--b)}
+#bt-box{border-color:var(--b)}
+@media(max-width:600px){body{font-size:1.06rem}.top .wrap{padding-top:5rem}.top a.go{display:block;text-align:center}.wrap{width:min(100% - 2rem,960px)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}html{scroll-behavior:auto}}
 </style>
+<script>document.documentElement.className+=" js"</script>
 </head>
 <body>
-
-<header class="hero">
+<header class="top">
+  <div class="bg"><img style="object-position:62% 50%" src="kep-hero.jpg" decoding="async" fetchpriority="high" alt=""></div>
   <div class="wrap">
     <h1>Digitális megoldások a fenntartható életért</h1>
     <hr class="rule">
     <p class="sub">„Lapozz a zöldebb jövő felé”</p>
     <p class="lead">Hány lapot nyomtattál ki a múlt héten? És hányat használtál tényleg?</p>
-    <a href="#kerdesek">Görgess lejjebb</a>
+    <a class="go" href="#kerdesek">Kezdjük el</a>
   </div>
 </header>
 
 <section id="kerdesek">
-  <div class="wrap">
-    <h2>Mielőtt továbbmész: három kérdés</h2>
-    <p>Nincs rá pontszám. Válaszolj, és megmutatjuk, mit gondolunk mi.</p>
-
-    <div class="q">
+  <div class="wrap split st">
+    <div>
+      <h2 class="rv">Mielőtt továbbmész: három kérdés</h2>
+      <p class="rv">Nincs rá pontszám. Válaszolj, és megmutatjuk, mit gondolunk mi.</p>
+      <div class="q">
       <h3>Mikor nyomtattál ki utoljára valamit, amit alig használtál?</h3>
       <div class="opts">
         <button class="opt" data-r="Ez gyakori. Pont ezt szeretnénk csökkenteni.">Ma vagy tegnap</button>
@@ -103,9 +153,7 @@ footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
         <button class="opt" data-r="Pont ezért nem tűnik fel, mennyi megy el.">Nem emlékszem</button>
       </div>
       <p class="fb" aria-live="polite"></p>
-    </div>
-
-    <div class="q">
+    </div><div class="q">
       <h3>Szerinted mennyivel csökkenne a papírfogyasztás, ha a dolgozatok nagy része online lenne?</h3>
       <div class="opts">
         <button class="opt" data-r="A mi számításunk szerint sokkal többel. Lejjebb látod.">Alig</button>
@@ -113,9 +161,7 @@ footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
         <button class="opt" data-r="Közel vagy: nálunk körülbelül 38% jött ki.">Nagyjából egyharmaddal vagy többel</button>
       </div>
       <p class="fb" aria-live="polite"></p>
-    </div>
-
-    <div class="q">
+    </div><div class="q">
       <h3>Online dolgozatot írnál szívesebben?</h3>
       <div class="opts">
         <button class="opt" data-r="A QR-kódos belépés ebben segítene.">Igen</button>
@@ -124,14 +170,19 @@ footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
       </div>
       <p class="fb" aria-live="polite"></p>
     </div>
+    </div>
+    <figure class="ph stick tall"><img src="kep-kerdes.jpg" decoding="async" loading="lazy" alt="Fáradt nő papírhalmok és szétszórt lapok között" style="object-position:45% 50%"></figure>
   </div>
 </section>
 
 <section class="alt" id="szamok">
-  <div class="wrap">
-    <h2>Mit mutatnak a számaink?</h2>
-    <p>A prezentációban két grafikont készítettünk: az egyik a papír költségét, a másik a papírfogyasztást és a fakivágást mutatja. Mindkettőn az látszik, hogy az első év végére az online dolgozatokkal körülbelül 38%-kal kevesebb papír kell.</p>
-    <div class="cmp" id="cmp">
+  <div class="wrap split st">
+    <div>
+      <h2 class="rv">Mit mutatnak a számaink?</h2>
+      <p class="rv">A prezentációban két grafikont készítettünk: az egyik a papír költségét, a másik a papírfogyasztást és a fakivágást mutatja. Mindkettőn az látszik, hogy az első év végére az online dolgozatokkal kevesebb papír kell.</p>
+      <p class="big rv">−38%</p>
+      <p class="bigc">papír és költség az első év végére, az online dolgozatokkal</p>
+      <div class="cmp" id="cmp">
       <h3>Papírköltség az első év végén</h3>
       <div class="row"><span>Online dolgozatok előtt</span><div class="track"><div class="fill" style="--w:100%">100%</div></div></div>
       <div class="row"><span>Online dolgozatok után</span><div class="track"><div class="fill g" style="--w:62%">62%</div></div></div>
@@ -140,25 +191,35 @@ footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
       <div class="row"><span>60% online dolgozattal</span><div class="track"><div class="fill g" style="--w:62%">62%</div></div></div>
       <p class="note">Százalékos összehasonlítás a prezentációnk grafikonjai alapján.</p>
     </div>
-    <p class="ask">Mire költenéd el a megspórolt pénzt az iskolában?</p>
+    
+      <p class="ask">Mire költenéd el a megspórolt pénzt az iskolában?</p>
+    </div>
+    <figure class="ph stick tall"><img src="kep-szamok.jpg" decoding="async" loading="lazy" alt="Férfi a számítógépnél, körülötte papírhalmok és szálló lapok" style="object-position:72% 50%"></figure>
   </div>
 </section>
 
-<section id="megoldasok">
+<section id="megoldasok" class="sol-wrap">
   <div class="wrap">
-    <h2>Mit használjunk papír helyett?</h2>
-    <div class="cols">
+    <h2 class="rv">Mit használjunk papír helyett?</h2>
+    <div class="split sol rev rv">
+      <figure class="ph duo"><img src="kep-qr.jpg" decoding="async" loading="lazy" alt="Telefon és számítógépek, körülöttük digitális ikonok"></figure>
       <div><h3>QR-kódos dolgozat belépők</h3><p>Egy beolvasással bent vagy a dolgozatban, így könnyebb az írás, és nem kell kinyomtatni semmit.</p></div>
+    </div>
+    <div class="split sol rv">
       <div><h3>Ebédjegyek digitalizálása</h3><p>Nincs több elveszett vagy összegyűrt cédula, minden egy helyen van.</p></div>
+      <figure class="ph duo"><img src="kep-ebed.jpg" decoding="async" loading="lazy" alt="Papírszelvények halma, amelyből digitális táblázat lesz" style="object-position:50% 62%"></figure>
+    </div>
+    <div class="split sol rev rv">
+      <figure class="ph duo"><img src="kep-olvasmany.jpg" decoding="async" loading="lazy" alt="Kéz nyúl a digitális ikonok felé" style="object-position:62% 50%"></figure>
       <div><h3>E-könyvek és digitális kötelező olvasmányok</h3><p>Az egész olvasmánylista elfér egy eszközön, és nem kell mindenkinek külön kinyomtatnia.</p></div>
     </div>
     <p class="ask">Melyik változást vennéd észre először a saját napodban?</p>
   </div>
 </section>
 
-<section class="alt" id="lepesek">
+<section class="alt2" id="lepesek">
   <div class="wrap">
-    <h2>Hogyan jutunk közelebb a zöld jövőhöz?</h2>
+    <h2 class="rv">Hogyan jutunk közelebb a zöld jövőhöz?</h2>
     <p>Pipáld ki, amit te is meg tudnál csinálni.</p>
     <div id="picks">
       <label class="pick"><input type="checkbox">Papírfelhasználás csökkentése</label>
@@ -169,6 +230,7 @@ footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
       <label class="pick"><input type="checkbox">Papírgyűjtő dobozok kihelyezése</label>
       <label class="pick"><input type="checkbox">Szóbeli feleltetés</label>
     </div>
+    <div class="mt"><div class="mf" id="mf"></div></div>
     <p id="cnt" aria-live="polite">0 / 7 kipipálva</p>
   </div>
 </section>
@@ -195,6 +257,8 @@ footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
   function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
   function slug(s){return norm(s).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
 
+  var rv=document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.12});rv.forEach(function(x){io.observe(x)})}else{rv.forEach(function(x){x.classList.add('on')})}
   var cmp=document.getElementById('cmp');
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(e,o){if(e[0].isIntersecting){cmp.classList.add('in');o.disconnect()}},{threshold:.3}).observe(cmp);
@@ -213,7 +277,7 @@ footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
   boxes.forEach(function(b){b.addEventListener('change',function(){
     var n=0;boxes.forEach(function(x){if(x.checked)n++});
     cnt.textContent=n+' / '+boxes.length+' kipipálva'+(n===boxes.length?' – mind a hét!':'');
-    var t=b.parentNode.textContent.trim();
+    document.getElementById('mf').style.width=(n/boxes.length*100)+'%';var t=b.parentNode.textContent.trim();
     if(b.checked)ev('vallalas/'+slug(t),'Vállalás: '+t);
   })});
 
