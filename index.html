@@ -60,6 +60,21 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #e0a8
 .end blockquote{margin:0 0 1rem;font-family:Bitter,Georgia,serif;font-weight:800;font-size:clamp(1.5rem,1.1rem + 2.2vw,2.6rem);line-height:1.25;max-width:22ch}
 .end p{color:#d3efda;margin:0}
 footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
+#bt-open{position:fixed;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:30;background:var(--g);color:var(--on);border:2px solid var(--bg);border-radius:4px;padding:.75rem 1.1rem;font:inherit;font-weight:700;cursor:pointer;min-height:44px}
+#bt-box{display:none;position:fixed;right:1rem;bottom:calc(4.6rem + env(safe-area-inset-bottom,0px));z-index:30;width:min(380px,calc(100vw - 2rem));max-height:min(72vh,560px);flex-direction:column;background:var(--bg);color:var(--ink);border:2px solid var(--g);border-radius:6px;overflow:hidden}
+#bt-box.open{display:flex}
+.bt-h{background:var(--gd);color:#fff;padding:.3rem .4rem .3rem 1rem;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.bt-h button{background:none;border:0;color:#fff;font-size:1.6rem;line-height:1;cursor:pointer;min-width:44px;min-height:44px}
+#bt-log{overflow:auto;padding:.8rem;flex:1;display:flex;flex-direction:column;gap:.5rem}
+.m{max-width:90%;padding:.5rem .75rem;border-radius:4px;font-size:.95rem;line-height:1.45}
+.m.b{background:var(--alt);align-self:flex-start}
+.m.u{background:var(--g);color:var(--on);align-self:flex-end}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;padding:0 .8rem .6rem}
+.chips button{font:inherit;font-size:.88rem;color:var(--ink);background:transparent;border:1.5px solid var(--g);border-radius:4px;padding:.4rem .6rem;cursor:pointer}
+#bt-f{display:flex;gap:.4rem;padding:.6rem .8rem;border-top:1px solid var(--line)}
+#bt-f input{flex:1;min-width:0;font:inherit;padding:.55rem;border:2px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink)}
+#bt-f button{font:inherit;font-weight:700;background:var(--g);color:var(--on);border:0;border-radius:4px;padding:0 .9rem;cursor:pointer}
+@media (max-width:600px){#bt-box{left:.5rem;right:.5rem;width:auto;max-height:75vh}#bt-open{right:.5rem}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -166,18 +181,31 @@ footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
 </section>
 <footer><div class="wrap">Projekthét · Készítette: a 9.c osztály tanulói</div></footer>
 
+<div id="bt-box" role="dialog" aria-label="Segítő">
+  <div class="bt-h"><span>Kérdésed van?</span><button id="bt-x" aria-label="Bezárás">×</button></div>
+  <div id="bt-log" aria-live="polite"></div>
+  <div class="chips" id="bt-chips"></div>
+  <form id="bt-f"><input id="bt-i" type="text" placeholder="Írd ide a kérdésed…" aria-label="Kérdés" autocomplete="off"><button>Küldés</button></form>
+</div>
+<button id="bt-open">Kérdésed van?</button>
+
 <script>
 (function(){
+  function ev(p,t){try{if(window.goatcounter&&window.goatcounter.count)window.goatcounter.count({path:p,title:t,event:true})}catch(e){}}
+  function norm(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'')}
+  function slug(s){return norm(s).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}
+
   var cmp=document.getElementById('cmp');
   if('IntersectionObserver' in window){
     new IntersectionObserver(function(e,o){if(e[0].isIntersecting){cmp.classList.add('in');o.disconnect()}},{threshold:.3}).observe(cmp);
   }else{cmp.classList.add('in')}
 
-  document.querySelectorAll('.q').forEach(function(q){
+  document.querySelectorAll('.q').forEach(function(q,qi){
     var fb=q.querySelector('.fb'),opts=q.querySelectorAll('.opt');
     opts.forEach(function(b){b.addEventListener('click',function(){
       opts.forEach(function(x){x.classList.remove('on')});
       b.classList.add('on');fb.textContent=b.getAttribute('data-r');
+      ev('kviz-'+(qi+1)+'/'+slug(b.textContent),'Kérdés '+(qi+1)+': '+b.textContent);
     })});
   });
 
@@ -185,9 +213,41 @@ footer{background:var(--gd);color:#a9d2b4;font-size:.9rem;padding:0 0 1.6rem}
   boxes.forEach(function(b){b.addEventListener('change',function(){
     var n=0;boxes.forEach(function(x){if(x.checked)n++});
     cnt.textContent=n+' / '+boxes.length+' kipipálva'+(n===boxes.length?' – mind a hét!':'');
+    var t=b.parentNode.textContent.trim();
+    if(b.checked)ev('vallalas/'+slug(t),'Vállalás: '+t);
   })});
+
+  var KB=[
+   {id:'kezdes',l:'Hogyan kezdjem?',c:1,k:['kezd','atall','atter','elso lepes','segit'],a:'Kezdd kicsiben: válassz egyet a lenti listából, például a kétoldalas nyomtatást, és csináld meg ezen a héten. Ha ez már megy, jöhet a következő.'},
+   {id:'qr',l:'Mi az a QR-kódos dolgozat?',c:1,k:['qr','dolgozat','belep','online'],a:'A QR-kódos belépésnél a tanuló a telefonjával beolvassa a kódot, és megnyílik a dolgozat. Így nem kell kinyomtatni és kiosztani, és könnyebb az írás.'},
+   {id:'nyomtatas',l:'Hogyan nyomtassak kevesebbet?',c:1,k:['nyomta','ketoldal','duplex'],a:'Nyomtatás előtt gondold át, kell-e tényleg papír. Ha igen, a nyomtatási beállításoknál válaszd a kétoldalas nyomtatást, így fele annyi lap kell.'},
+   {id:'szelektiv',l:'Hova dobjam a papírt?',c:1,k:['ujrahasz','szelekt','gyujt','dobo','hulladek','szemet'],a:'A használt papírt ne a vegyes szemétbe dobd, hanem gyűjtsd külön, és tedd a papírgyűjtő dobozba. Így újra felhasználható.'},
+   {id:'szamok',l:'Mennyit spórolunk?',c:1,k:['szam','sporol','koltseg','38','mennyi','grafikon'],a:'A prezentációnk számításai szerint az első év végére az online dolgozatokkal körülbelül 38%-kal kevesebb papír és költség jön ki.'},
+   {id:'ebed',l:'Ebédjegyek',k:['ebed','jegy','cedula'],a:'Az ebédjegyek digitalizálásával a papírcédulák helyett minden digitálisan megvan, így nem tud elveszni vagy összegyűrődni.'},
+   {id:'konyv',l:'E-könyvek',k:['konyv','olvasm','kotelezo'],a:'A digitális kötelező olvasmányokat egy eszközön olvashatod, és nem kell kinyomtatni őket.'},
+   {id:'szobeli',l:'Szóbeli feleltetés',k:['szobeli','felelt'],a:'A szóbeli feleltetéshez nincs szükség nyomtatott lapra, ezért ez is segít a papírfelhasználás csökkentésében.'},
+   {id:'csapat',l:'Kik csinálták?',k:['ki keszit','kik keszit','ki csinal','kik csinal','csapat','osztaly','9.c'],a:'Ezt az oldalt a 9.c osztály tanulói készítették a projekthétre.'}
+  ];
+  var box=document.getElementById('bt-box'),log=document.getElementById('bt-log'),chips=document.getElementById('bt-chips'),inp=document.getElementById('bt-i'),started=false;
+  function add(t,c){var d=document.createElement('div');d.className='m '+c;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight}
+  function answer(e){add(e.a,'b');ev('bot/'+e.id,'Segítő: '+e.l)}
+  function ask(t){
+    add(t,'u');var n=norm(t),best=null,bs=0;
+    KB.forEach(function(e){var s=0;e.k.forEach(function(w){if(n.indexOf(w)>-1)s++});if(s>bs){bs=s;best=e}});
+    if(best)answer(best);
+    else{add('Erre sajnos nem tudok válaszolni, csak a projektünk témáiról tudok. Próbáld meg a gombok egyikét, vagy kérdezd meg a tanárodat.','b');ev('bot/ismeretlen','Segítő: ismeretlen kérdés')}
+  }
+  KB.forEach(function(e){if(e.c){var b=document.createElement('button');b.type='button';b.textContent=e.l;b.addEventListener('click',function(){add(e.l,'u');answer(e)});chips.appendChild(b)}});
+  function toggle(open){
+    box.classList.toggle('open',open);
+    if(open&&!started){started=true;add('Szia! Én egy egyszerű segítő vagyok, nem mesterséges intelligencia. A projektünk témáiról tudok válaszolni, válassz egy gombot, vagy írd le a kérdésed.','b')}
+    if(open)inp.focus();
+  }
+  document.getElementById('bt-open').addEventListener('click',function(){toggle(!box.classList.contains('open'))});
+  document.getElementById('bt-x').addEventListener('click',function(){toggle(false)});
+  document.getElementById('bt-f').addEventListener('submit',function(e){e.preventDefault();var t=inp.value.trim();if(t){ask(t);inp.value=''}});
 })();
 </script>
-  <script data-goatcounter="https://zoldkonyv.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script data-goatcounter="https://zoldkonyv.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 </html>
